@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Magical Puppy Valentine</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      text-align: center;
+      font-family: "Trebuchet MS", Arial, sans-serif;
+      background: linear-gradient(135deg, #c7a8ff, #ffe6ff);
+      overflow: hidden;
+      height: 100vh;
+    }
+
+    h1 {
+      margin-top: 60px;
+      color: white;
+      text-shadow: 0 0 10px #ffb3ff;
+      font-size: 36px;
+    }
+
+    .sparkle {
+      position: absolute;
+      color: white;
+      font-size: 20px;
+      animation: floatUp 4s linear infinite;
+      opacity: 0.8;
+    }
+
+    @keyframes floatUp {
+      from { transform: translateY(0); opacity: 1; }
+      to { transform: translateY(-600px); opacity: 0; }
+    }
+
+    #puppy {
+      margin-top: 20px;
+      width: 200px;
+      height: 200px;
+      background: rgba(255,255,255,0.3);
+      border-radius: 20px;
+      display: inline-block;
+      box-shadow: 0 0 20px rgba(255,255,255,0.5);
+      line-height: 200px;
+      color: white;
+      font-size: 20px;
+      text-shadow: 0 0 10px #ffb3ff;
+    }
+  </style>
+</head>
+<body>
+
+<h1>✨ Magical Puppy Valentine ✨</h1>
+
+<div id="puppy">🐶 Puppy Placeholder</div>
+
+<script>
+  // Floating sparkles
+  setInterval(() => {
+    const s = document.createElement("div");
+    s.classList.add("sparkle");
+    s.innerHTML = "✨";
+    s.style.left = Math.random() * window.innerWidth + "px";
+    s.style.top = "600px";
+    document.body.appendChild(s);
+
+    setTimeout(() => s.remove(), 4000);
+  }, 400);
+</script>
+
+</body>
+</html>
