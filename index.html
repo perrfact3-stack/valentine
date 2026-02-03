@@ -1,191 +1,141 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Magical Puppy Valentine</title>
-  <style>
+<meta charset="UTF-8">
+<title>Valentine</title>
+<style>
     body {
-      margin: 0;
-      padding: 0;
-      text-align: center;
-      font-family: "Trebuchet MS", Arial, sans-serif;
-      background: linear-gradient(135deg, #c7a8ff, #ffe6ff);
-      overflow-x: hidden;
-      min-height: 100vh;
-    }
-
-    h1 {
-      margin-top: 40px;
-      color: white;
-      text-shadow: 0 0 10px #ffb3ff;
-      font-size: 36px;
-    }
-
-    .sparkle {
-      position: absolute;
-      color: white;
-      font-size: 20px;
-      animation: floatUp 4s linear infinite;
-      opacity: 0.8;
-    }
-
-    @keyframes floatUp {
-      from { transform: translateY(0); opacity: 1; }
-      to { transform: translateY(-600px); opacity: 0; }
+        background: pink;
+        text-align: center;
+        font-family: Arial, sans-serif;
     }
 
     #puppy {
-      margin-top: 10px;
-      width: 200px;
-      height: 200px;
-      border-radius: 20px;
-      box-shadow: 0 0 25px rgba(255,255,255,0.8);
-      animation: puppyAppear 1.5s ease-out forwards;
-      opacity: 0;
+        width: 250px;
+        margin-top: 40px;
+        opacity: 0;
+        transition: opacity 1.5s ease-in;
     }
 
-    @keyframes puppyAppear {
-      from { transform: scale(0.6); opacity: 0; }
-      to { transform: scale(1); opacity: 1; }
-    }
-
-    #bubble {
-      margin: 20px auto;
-      width: 300px;
-      padding: 15px;
-      background: rgba(255,255,255,0.7);
-      border-radius: 20px;
-      box-shadow: 0 0 20px rgba(255,255,255,0.8);
-      font-size: 20px;
-      color: #5a2d82;
-      text-shadow: 0 0 5px white;
-      animation: bubbleAppear 1.5s ease-out forwards;
-      opacity: 0;
-    }
-
-    @keyframes bubbleAppear {
-      from { transform: translateY(20px); opacity: 0; }
-      to { transform: translateY(0); opacity: 1; }
+    #speech {
+        font-size: 24px;
+        margin-top: 20px;
+        opacity: 0;
+        transition: opacity 1.5s ease-in;
     }
 
     #buttons {
-      margin-top: 20px;
+        margin-top: 25px;
+        opacity: 0;
+        transition: opacity 1.5s ease-in;
     }
 
     button {
-      padding: 12px 25px;
-      font-size: 18px;
-      border: none;
-      border-radius: 10px;
-      cursor: pointer;
-      margin: 10px;
-      box-shadow: 0 0 10px rgba(255,255,255,0.7);
-      transition: 0.2s;
+        font-size: 20px;
+        padding: 10px 20px;
+        margin: 10px;
+        border-radius: 10px;
+        border: none;
+        cursor: pointer;
     }
 
     #yesBtn {
-      background: #d28bff;
-      color: white;
-    }
-
-    #yesBtn:hover {
-      transform: scale(1.1);
-      box-shadow: 0 0 15px white;
+        background-color: #ff4da6;
+        color: white;
     }
 
     #noBtn {
-      background: #ff9bb3;
-      color: white;
-      position: relative;
+        background-color: #999;
+        color: white;
+        position: relative;
     }
-  </style>
+
+    #valVideo {
+        display: none;
+        width: 90%;
+        margin-top: 25px;
+        border-radius: 12px;
+    }
+</style>
 </head>
 <body>
 
-<h1>✨ Magical Puppy Valentine ✨</h1>
-
-<!-- Background music -->
+<!-- Background Music -->
 <audio id="bgmusic" src="bgmusic.mp3" autoplay loop></audio>
 
-<!-- Sound effects -->
-<audio id="bark" src="bark.wav"></audio>
+<!-- Sound Effects -->
+<audio id="bark" src="bark.mp3"></audio>
 <audio id="chime" src="chime.wav"></audio>
 <audio id="yesSound" src="yes-sound.ogg"></audio>
 
 <!-- Puppy -->
-<img id="puppy" src="https://place-puppy.com/300x300" alt="Cute Puppy">
+<img id="puppy" src="puppy.png" alt="Cute Puppy">
 
-<!-- Speech bubble -->
-<div id="bubble">
-  Will you be my Valentine… as a friend?
-</div>
+<!-- Speech Bubble -->
+<div id="speech">Will you be my Valentine... as a friend?</div>
 
 <!-- Buttons -->
 <div id="buttons">
-  <button id="yesBtn">Yes 💖</button>
-  <button id="noBtn">No 😭</button>
+    <button id="yesBtn">Yes 💖</button>
+    <button id="noBtn">No 😭</button>
 </div>
 
-<!-- Video -->
-<div style="margin-top:30px;">
-  <video id="video" width="300" controls>
-    <source src="video.mp4" type="video/mp4">
-  </video>
-</div>
+<!-- Hidden Video -->
+<video id="valVideo" src="video.mp4" controls></video>
 
 <script>
-  // Fade-in music
-  const bg = document.getElementById("bgmusic");
-  bg.volume = 0;
-  let v = 0;
-  const fade = setInterval(() => {
-    if (v < 0.4) {
-      v += 0.02;
-      bg.volume = v;
-    } else {
-      clearInterval(fade);
-    }
-  }, 200);
+    // Fade in puppy
+    setTimeout(() => {
+        document.getElementById("puppy").style.opacity = 1;
+        document.getElementById("bark").play();
+    }, 800);
 
-  // Sound effects
-  const bark = document.getElementById("bark");
-  const chime = document.getElementById("chime");
-  const yesSound = document.getElementById("yesSound");
+    // Fade in speech bubble
+    setTimeout(() => {
+        document.getElementById("speech").style.opacity = 1;
+        document.getElementById("chime").play();
+    }, 2000);
 
-  // Play bark when puppy appears
-  setTimeout(() => bark.play(), 800);
+    // Fade in buttons
+    setTimeout(() => {
+        document.getElementById("buttons").style.opacity = 1;
+    }, 3200);
 
-  // Play chime when bubble appears
-  setTimeout(() => chime.play(), 1500);
+    // Yes button → show video + play yes sound
+    document.getElementById("yesBtn").addEventListener("click", () => {
+        document.getElementById("yesSound").play();
 
-  // Floating sparkles
-  setInterval(() => {
-    const s = document.createElement("div");
-    s.classList.add("sparkle");
-    s.innerHTML = "✨";
-    s.style.left = Math.random() * window.innerWidth + "px";
-    s.style.top = "600px";
-    document.body.appendChild(s);
-    setTimeout(() => s.remove(), 4000);
-  }, 400);
+        const video = document.getElementById("valVideo");
+        video.style.display = "block";
+        video.play();
+    });
 
-  // No button runs away
-  let runCount = 0;
-  const noBtn = document.getElementById("noBtn");
+    // No button messages + run away
+    let noClickCount = 0;
+    const noMessages = [
+        "Really?",
+        "Are you sure?",
+        "Think about it…",
+        "Come onnn…",
+        "The puppy is crying 😭"
+    ];
 
-  noBtn.addEventListener("mouseover", () => {
-    if (runCount < 5) {
-      noBtn.style.position = "absolute";
-      noBtn.style.left = Math.random() * 80 + "%";
-      noBtn.style.top = Math.random() * 80 + "%";
-      runCount++;
-    }
-  });
+    const noBtn = document.getElementById("noBtn");
 
-  // Yes button sound + message
-  document.getElementById("yesBtn").addEventListener("click", () => {
-    yesSound.play();
-    alert("YAY! The puppy is happy! 💖🐶");
-  });
+    noBtn.addEventListener("click", () => {
+        if (noClickCount < noMessages.length) {
+            alert(noMessages[noClickCount]);
+            noClickCount++;
+        } else {
+            alert("Okay fine… but the puppy is disappointed 😢");
+        }
+    });
+
+    noBtn.addEventListener("mouseover", () => {
+        const x = Math.random() * 300 - 150;
+        const y = Math.random() * 200 - 100;
+        noBtn.style.transform = `translate(${x}px, ${y}px)`;
+    });
 </script>
 
 </body>
