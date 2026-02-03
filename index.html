@@ -70,75 +70,7 @@
 <audio id="chime" src="chime.wav"></audio>
 <audio id="yesSound" src="yes-sound.ogg"></audio>
 
-<!-- Main Image (your ROTC cartoon) -->
-<img id="mainImage" src="YOUR-IMAGE-FILENAME-HERE" alt="ROTC Cartoon">
+<!-- Main Image -->
+<img id="mainImage" src="rotc.png" alt="ROTC Cartoon">
 
 <!-- Speech Bubble -->
-<div id="speech">Will you be my Valentine... as a friend?</div>
-
-<!-- Buttons -->
-<div id="buttons">
-    <button id="yesBtn">Yes 💖</button>
-    <button id="noBtn">No 😭</button>
-</div>
-
-<!-- Hidden Video -->
-<video id="valVideo" src="video.mp4" controls></video>
-
-<script>
-    // Fade in image
-    setTimeout(() => {
-        document.getElementById("mainImage").style.opacity = 1;
-        document.getElementById("bark").play();
-    }, 800);
-
-    // Fade in speech bubble
-    setTimeout(() => {
-        document.getElementById("speech").style.opacity = 1;
-        document.getElementById("chime").play();
-    }, 2000);
-
-    // Fade in buttons
-    setTimeout(() => {
-        document.getElementById("buttons").style.opacity = 1;
-    }, 3200);
-
-    // Yes button → show video + play yes sound
-    document.getElementById("yesBtn").addEventListener("click", () => {
-        document.getElementById("yesSound").play();
-
-        const video = document.getElementById("valVideo");
-        video.style.display = "block";
-        video.play();
-    });
-
-    // No button messages + run away
-    let noClickCount = 0;
-    const noMessages = [
-        "Really?",
-        "Are you sure?",
-        "Think about it…",
-        "Come onnn…",
-        "The puppy— I mean ROTC buddy — is crying 😭"
-    ];
-
-    const noBtn = document.getElementById("noBtn");
-
-    noBtn.addEventListener("click", () => {
-        if (noClickCount < noMessages.length) {
-            alert(noMessages[noClickCount]);
-            noClickCount++;
-        } else {
-            alert("Okay fine… but I'm telling the ROTC squad 😢");
-        }
-    });
-
-    noBtn.addEventListener("mouseover", () => {
-        const x = Math.random() * 300 - 150;
-        const y = Math.random() * 200 - 100;
-        noBtn.style.transform = `translate(${x}px, ${y}px)`;
-    });
-</script>
-
-</body>
-</html>
