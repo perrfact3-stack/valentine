@@ -163,20 +163,26 @@
 <div id="yesMessage">She said YES!!! 💖🎉</div>
 
 <script>
+    // ⭐ TAP TO UNLOCK AUDIO + VIDEO (fix for phones)
+    document.body.addEventListener("click", () => {
+        document.getElementById("bgmusic").play();
+        document.getElementById("bark").play();
+        document.getElementById("chime").play();
+        document.getElementById("voice").play();
+        document.getElementById("valVideo").play();
+    }, { once: true });
+
     // Lower background music volume
     document.getElementById("bgmusic").volume = 0.3;
 
     // Fade in image
     setTimeout(() => {
         document.getElementById("mainImage").style.opacity = 1;
-        document.getElementById("bark").play();
     }, 800);
 
     // Fade in speech + play your voice
     setTimeout(() => {
         document.getElementById("speech").style.opacity = 1;
-        document.getElementById("chime").play();
-        document.getElementById("voice").play();
     }, 2000);
 
     // Fade in buttons
