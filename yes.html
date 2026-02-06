@@ -7,61 +7,87 @@
 <style>
     body {
         background: pink;
-        text-align: center;
         font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
     }
 
-    h1 {
-        color: #ff1f7a;
-        margin-top: 30px;
-        font-size: 32px;
+    .container {
+        display: flex;
+        width: 90%;
+        max-width: 1100px;
+        gap: 20px;
     }
 
-    /* FIXED VIDEO SIZE SO LYRICS SHOW */
+    /* Video on the left */
     #videoBox {
-        margin-top: 40px;
-        margin-bottom: 25px;
         width: 55%;
         border-radius: 12px;
         opacity: 0;
         transition: opacity 1.5s ease-in;
     }
 
+    /* Lyrics box on the right */
     #lyricsBox {
-        margin-top: 20px;
+        width: 45%;
+        background: white;
+        border-radius: 12px;
+        padding: 20px;
         font-size: 22px;
         color: #ff1f7a;
         font-weight: bold;
         text-align: center;
-        transition: opacity 0.4s ease;
+        height: 300px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    }
+
+    h1 {
+        position: absolute;
+        top: 20px;
+        width: 100%;
+        text-align: center;
+        color: #ff1f7a;
+        font-size: 32px;
     }
 </style>
 </head>
 <body>
 
-<audio id="bgmusic" src="bgmusic.mp3" autoplay loop></audio>
-
 <h1>She said YES!!! 💖🎉</h1>
 
-<video id="videoBox" src="video.mp4" controls autoplay></video>
+<audio id="bgmusic" src="bgmusic.mp3" autoplay loop></audio>
 
-<div id="lyricsBox"></div>
+<div class="container">
+
+    <!-- Muted + playsinline stops fullscreen on phones -->
+    <video id="videoBox" src="video.mp4" autoplay muted playsinline></video>
+
+    <div id="lyricsBox"></div>
+
+</div>
 
 <script>
+    /* Fade in only */
+    const video = document.getElementById("videoBox");
     setTimeout(() => {
-        document.getElementById("videoBox").style.opacity = 1;
+        video.style.opacity = 1;
     }, 300);
 
+    /* Lyrics timing */
     const lyrics = [
         { start: 4, end: 19, text: "Bailey — she could have anyone in the world" },
         { start: 22, end: 33, text: "Floats in a golden gown, beautiful soul ✨" },
-
         { start: 38, end: 49, text: "How can I compete with her?" },
         { start: 56, end: 72, text: "The world is turning just for her 💖" },
-
         { start: 93, end: 108, text: "Bailey moves oceans and rivers with ease 🌊" },
         { start: 111, end: 127, text: "Her siren kiss pulls you into the deep" },
-
         { start: 129, end: 141, text: "Perfection is Bailey" },
         { start: 146, end: 161, text: "I wish I could be Bailey 🌸" }
     ];
