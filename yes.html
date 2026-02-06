@@ -24,20 +24,54 @@
         opacity: 0;
         transition: opacity 1.5s ease-in;
     }
+
+    #lyricsBox {
+        margin-top: 20px;
+        font-size: 22px;
+        color: #ff1f7a;
+        font-weight: bold;
+        text-align: center;
+        transition: opacity 0.4s ease;
+    }
 </style>
 </head>
 <body>
 
-<audio id="bgmusic" src="bgmusic.mp3" autoplay loop></audio>
+<audio id="bgmusic" src="bgmusic3.mp3" autoplay loop></audio>
 
 <h1>She said YES!!! 💖🎉</h1>
 
 <video id="videoBox" src="video.mp4" controls autoplay></video>
 
+<div id="lyricsBox"></div>
+
 <script>
     setTimeout(() => {
         document.getElementById("videoBox").style.opacity = 1;
     }, 300);
+
+    const lyrics = [
+        { start: 4, end: 19, text: "Bailey — she could have anyone in the world" },
+        { start: 22, end: 33, text: "Floats in a golden gown, beautiful soul ✨" },
+
+        { start: 38, end: 49, text: "How can I compete with Her?" },
+        { start: 56, end: 72, text: "The world is turning just for her 💖" },
+
+        { start: 93, end: 108, text: "Bailey moves oceans and rivers with ease 🌊" },
+        { start: 111, end: 127, text: "Her siren kiss pulls you into the deep" },
+
+        { start: 129, end: 141, text: "Perfection is Bailey" },
+        { start: 146, end: 161, text: "I wish I could be Bailey 🌸" }
+    ];
+
+    const audio = document.getElementById("bgmusic");
+    const box = document.getElementById("lyricsBox");
+
+    audio.addEventListener("timeupdate", () => {
+        const t = audio.currentTime;
+        const active = lyrics.find(l => t >= l.start && t <= l.end);
+        box.textContent = active ? active.text : "";
+    });
 </script>
 
 </body>
